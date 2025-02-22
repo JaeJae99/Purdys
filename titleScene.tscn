@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxk8i5lt5cpd0"]
+[gd_scene load_steps=5 format=3 uid="uid://b0aw6o8vmh2la"]
 
 [ext_resource type="PackedScene" uid="uid://dmdrq7ywr4ys6" path="res://Characters/Guards/GuardTemplate/guard.tscn" id="1_oawg2"]
 

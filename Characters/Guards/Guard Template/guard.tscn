@@ -1,14 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmdrq7ywr4ys6"]
+[gd_scene load_steps=5 format=3 uid="uid://df7c8hm6a30th"]
 
-[ext_resource type="Script" path="res://Characters/Guards/GuardTemplate/guardCamera.gd" id="1_11c5n"]
-[ext_resource type="Script" path="res://Characters/Guards/GuardTemplate/guardMovement.gd" id="1_n1t57"]
+[ext_resource type="Script" path="res://Characters/Guards/Guard Template/guardMovement.gd" id="1_8auro"]
+[ext_resource type="Script" path="res://Characters/Guards/GuardTemplate/guardCamera.gd" id="2_sb7wv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6pgui"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_pdvdp"]
 
 [node name="guard" type="CharacterBody3D"]
-script = ExtResource("1_n1t57")
+script = ExtResource("1_8auro")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_6pgui")
@@ -22,7 +22,7 @@ size = Vector3(0.7, 0.3, 0.5)
 
 [node name="pivotY" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-script = ExtResource("1_11c5n")
+script = ExtResource("2_sb7wv")
 
 [node name="pivotX" type="Node3D" parent="pivotY"]
 
