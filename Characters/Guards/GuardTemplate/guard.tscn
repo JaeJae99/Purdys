@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmdrq7ywr4ys6"]
+
+[ext_resource type="Script" path="res://Characters/Guards/GuardTemplate/guardMovement.gd" id="1_n1t57"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6pgui"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_pdvdp"]
+
+[node name="guard" type="CharacterBody3D"]
+script = ExtResource("1_n1t57")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_6pgui")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+mesh = SubResource("CapsuleMesh_pdvdp")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGMesh3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.439347, -0.304339)
+size = Vector3(0.7, 0.3, 0.5)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
