@@ -6,16 +6,18 @@ const jumpForce = 7.5
 var inputDirection : Vector2
 var direction : Vector3
 
+@onready var pivotY : Node3D = $pivotY
+
 func _physics_process(delta):
 	
 	if not is_on_floor() :
 		velocity += get_gravity() * delta
 	
-	if Input.is_action_just_pressed("Space"):
+	if Input.is_action_just_pressed("Space") && is_on_floor():
 		velocity.y = jumpForce
 	
 	inputDirection = Input.get_vector("A", "D", "W", "S")
-	direction = (transform.basis * Vector3(inputDirection.x, 0, inputDirection.y)).normalized()
+	direction = (pivotY.transform.basis * Vector3(inputDirection.x, 0, inputDirection.y)).normalized()
 	
 	if direction:
 		velocity.x = direction.x * speed 
