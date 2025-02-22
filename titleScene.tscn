@@ -1,25 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxk8i5lt5cpd0"]
+[gd_scene load_steps=3 format=3 uid="uid://cxk8i5lt5cpd0"]
 
 [ext_resource type="PackedScene" uid="uid://dmdrq7ywr4ys6" path="res://Characters/Guards/GuardTemplate/guard.tscn" id="1_oawg2"]
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_n0k2w"]
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_rlpo4"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_jpft6"]
-
 [node name="titleScene" type="Node3D"]
-
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(0.986989, 0, 0, 0, 0.986989, 0, 0, 0, 0.986989, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
-shape = SubResource("WorldBoundaryShape3D_n0k2w")
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="StaticBody3D"]
-transform = Transform3D(36, 0, 0, 0, 36, 0, 0, 0, 36, 0, 0, 0)
-mesh = SubResource("PlaneMesh_rlpo4")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.0702962, 0.997526, 0, -0.997526, 0.0702962, -3.05679, 8.26579, 0)
@@ -28,12 +13,50 @@ spot_range = 13.055
 [node name="guard" parent="." instance=ExtResource("1_oawg2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.924778, 0)
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.620167, -1.75655)
+[node name="Map" type="CSGCombiner3D" parent="."]
+use_collision = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1298, 0)
-shape = SubResource("BoxShape3D_jpft6")
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Map"]
+transform = Transform3D(35.5316, 0, 0, 0, 35.5316, 0, 0, 0, 35.5316, 0, 0, 0)
+use_collision = true
+mesh = SubResource("PlaneMesh_rlpo4")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.124678, 0)
+[node name="CSGBox3D" type="CSGBox3D" parent="Map"]
+transform = Transform3D(0.971403, 0, 0, 0, 0.971403, 0, 0, 0, 0.971403, 0.289743, 0.412175, -5.00648)
+use_collision = true
+size = Vector3(2.72314, 0.853516, 1.948)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Map"]
+transform = Transform3D(0.971403, 0, 0, 0, 0.971403, 0, 0, 0, 0.971403, -5.01026, 1.21218, -5.00648)
+use_collision = true
+size = Vector3(2.72314, 0.853516, 1.948)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Map"]
+transform = Transform3D(0.971403, 0, 0, 0, 0.971403, 0, 0, 0, 0.971403, -5.01026, 2.11218, -0.406481)
+use_collision = true
+size = Vector3(2.72314, 0.853516, 1.948)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Map"]
+transform = Transform3D(0.971403, 0, 0, 0, 0.971403, 0, 0, 0, 0.971403, 0.489743, 2.91218, 4.19352)
+use_collision = true
+size = Vector3(2.72314, 0.853516, 1.948)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Map"]
+transform = Transform3D(0.971403, 0, 0, 0, 0.971403, 0, 0, 0, 0.971403, 0.250636, 2.09274, 5.53654)
+use_collision = true
+size = Vector3(14.4, 4.3136, 0.871338)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Map"]
+transform = Transform3D(0.971403, 0, 0, 0, 0.971403, 0, 0, 0, 0.971403, 7.05046, 2.09274, 0.0827681)
+use_collision = true
+size = Vector3(0.4, 4.3136, 12.1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Map"]
+transform = Transform3D(0.971403, 0, 0, 0, 0.971403, 0, 0, 0, 0.971403, 0.250635, 2.09274, -5.9885)
+use_collision = true
+size = Vector3(14.4, 4.3136, 0.4)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Map"]
+transform = Transform3D(0.971403, 0, 0, 0, 0.971403, 0, 0, 0, 0.971403, -6.54912, 2.09274, -0.533513)
+use_collision = true
+size = Vector3(0.527533, 4.3136, 11.6)
