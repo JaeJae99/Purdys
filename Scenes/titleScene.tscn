@@ -1,0 +1,103 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0aw6o8vmh2la"]
+
+[ext_resource type="Script" path="res://Scenes/Game.gd" id="1_hpi6x"]
+[ext_resource type="Script" path="res://Scenes/multiplayer_manager.gd" id="2_6q3l4"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_n0k2w"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rlpo4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jpft6"]
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_hpi6x")
+
+[node name="MultiplayerManager" type="Node" parent="." node_paths=PackedStringArray("address", "port", "userName", "camera")]
+script = ExtResource("2_6q3l4")
+address = NodePath("Network UI/VBoxContainer/IPAddress")
+port = NodePath("Network UI/VBoxContainer/Port Number")
+userName = NodePath("Network UI/VBoxContainer/Username")
+camera = NodePath("Camera2D")
+
+[node name="Network UI" type="Panel" parent="MultiplayerManager"]
+anchors_preset = -1
+anchor_left = 0.521
+anchor_top = 0.5
+anchor_right = 0.521
+anchor_bottom = 0.5
+offset_left = -2337.19
+offset_top = -1056.0
+offset_right = -1660.19
+offset_bottom = -563.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MultiplayerManager/Network UI"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 671.0
+offset_bottom = 499.0
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="StartServer" type="Button" parent="MultiplayerManager/Network UI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Start Server
+"
+
+[node name="JoinServer" type="Button" parent="MultiplayerManager/Network UI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Join Server
+"
+
+[node name="IPAddress" type="LineEdit" parent="MultiplayerManager/Network UI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+placeholder_text = "IP Address..."
+
+[node name="Port Number" type="LineEdit" parent="MultiplayerManager/Network UI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+placeholder_text = "Port..."
+
+[node name="Username" type="LineEdit" parent="MultiplayerManager/Network UI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+placeholder_text = "Enter A Username..."
+
+[node name="Camera2D" type="Camera2D" parent="MultiplayerManager"]
+position = Vector2(-1390, -494)
+
+[node name="SpawnedNodes" type="Node3D" parent="MultiplayerManager"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(0.986989, 0, 0, 0, 0.986989, 0, 0, 0, 0.986989, 0, -2.85643, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_n0k2w")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="StaticBody3D"]
+transform = Transform3D(36, 0, 0, 0, 36, 0, 0, 0, 36, 0, 0, 0)
+mesh = SubResource("PlaneMesh_rlpo4")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.23227, -1.75655)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1298, 0)
+shape = SubResource("BoxShape3D_jpft6")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.124678, 0)
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Characters/Guards/GuardTemplate/guard.tscn")
+spawn_path = NodePath("../MultiplayerManager/SpawnedNodes")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+omni_range = 30.477
+
+[connection signal="pressed" from="MultiplayerManager/Network UI/VBoxContainer/StartServer" to="MultiplayerManager" method="startHost"]
+[connection signal="pressed" from="MultiplayerManager/Network UI/VBoxContainer/JoinServer" to="MultiplayerManager" method="startClient"]
+[connection signal="text_changed" from="MultiplayerManager/Network UI/VBoxContainer/Username" to="MultiplayerManager" method="_on_username_text_changed"]

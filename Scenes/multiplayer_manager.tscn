@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://0jafh60vxuyv"]
+
+[node name="MultiplayerManager" type="Node"]
+
+[node name="Network UI" type="Panel" parent="."]
+anchors_preset = -1
+anchor_left = 0.521
+anchor_top = 0.5
+anchor_right = 0.521
+anchor_bottom = 0.5
+offset_left = -2337.19
+offset_top = -1056.0
+offset_right = -1660.19
+offset_bottom = -563.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Network UI"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 671.0
+offset_bottom = 499.0
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="StartServer" type="Button" parent="Network UI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Start Server
+"
+
+[node name="JoinServer" type="Button" parent="Network UI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Join Server
+"
+
+[node name="IPAddress" type="LineEdit" parent="Network UI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+placeholder_text = "IP Address..."
+
+[node name="Port Number" type="LineEdit" parent="Network UI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+placeholder_text = "Port..."
+
+[node name="Username" type="LineEdit" parent="Network UI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+placeholder_text = "Enter A Username..."
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-1409, -489)
+
+[connection signal="pressed" from="Network UI/VBoxContainer/StartServer" to="." method="startHost"]
+[connection signal="pressed" from="Network UI/VBoxContainer/JoinServer" to="." method="startClient"]
+[connection signal="text_changed" from="Network UI/VBoxContainer/Username" to="." method="_on_username_text_changed"]

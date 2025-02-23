@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0aw6o8vmh2la"]
+[gd_scene load_steps=6 format=3 uid="uid://b0aw6o8vmh2la"]
 
-[ext_resource type="PackedScene" uid="uid://dmdrq7ywr4ys6" path="res://Characters/Guards/GuardTemplate/guard.tscn" id="1_oawg2"]
+[ext_resource type="Script" path="res://Scenes/Game.gd" id="1_hpi6x"]
+[ext_resource type="PackedScene" uid="uid://0jafh60vxuyv" path="res://Scenes/multiplayer_manager.tscn" id="2_5g8pl"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_n0k2w"]
 
@@ -8,10 +9,14 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jpft6"]
 
-[node name="titleScene" type="Node3D"]
+[node name="Game" type="Node3D"]
+script = ExtResource("1_hpi6x")
+
+[node name="MultiplayerManager" parent="." instance=ExtResource("2_5g8pl")]
+maxClients = 5
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(0.986989, 0, 0, 0, 0.986989, 0, 0, 0, 0.986989, 0, 0, 0)
+transform = Transform3D(0.986989, 0, 0, 0, 0.986989, 0, 0, 0, 0.986989, 0, -2.85643, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
@@ -25,11 +30,8 @@ mesh = SubResource("PlaneMesh_rlpo4")
 transform = Transform3D(1, 0, 0, 0, 0.0702962, 0.997526, 0, -0.997526, 0.0702962, -3.05679, 8.26579, 0)
 spot_range = 13.055
 
-[node name="guard" parent="." instance=ExtResource("1_oawg2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.924778, 0)
-
 [node name="StaticBody3D2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.620167, -1.75655)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.23227, -1.75655)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1298, 0)

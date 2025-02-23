@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmdrq7ywr4ys6"]
+[gd_scene load_steps=6 format=3 uid="uid://dmdrq7ywr4ys6"]
 
 [ext_resource type="Script" path="res://Characters/Guards/GuardTemplate/guardCamera.gd" id="1_11c5n"]
 [ext_resource type="Script" path="res://Characters/Guards/GuardTemplate/guardMovement.gd" id="1_n1t57"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_g8tct"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6pgui"]
 
@@ -9,6 +11,9 @@
 
 [node name="guard" type="CharacterBody3D"]
 script = ExtResource("1_n1t57")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_g8tct")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_6pgui")
