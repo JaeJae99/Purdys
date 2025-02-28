@@ -1,13 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0aw6o8vmh2la"]
+[gd_scene load_steps=10 format=3 uid="uid://b0aw6o8vmh2la"]
 
 [ext_resource type="Script" path="res://Scenes/Game.gd" id="1_hpi6x"]
 [ext_resource type="Script" path="res://Scenes/multiplayer_manager.gd" id="2_6q3l4"]
+[ext_resource type="Texture2D" uid="uid://bfqpcwpbt47k1" path="res://image0.jpeg" id="3_tbild"]
+[ext_resource type="Texture2D" uid="uid://b2xmym6vlso25" path="res://icon.svg" id="4_f3n8g"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_n0k2w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cfblb"]
+albedo_texture = ExtResource("3_tbild")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rlpo4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jpft6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5hi0w"]
+albedo_texture = ExtResource("4_f3n8g")
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_hpi6x")
@@ -53,11 +61,13 @@ text = "Join Server
 [node name="IPAddress" type="LineEdit" parent="MultiplayerManager/Network UI/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
+text = "127.0.0.1"
 placeholder_text = "IP Address..."
 
 [node name="Port Number" type="LineEdit" parent="MultiplayerManager/Network UI/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
+text = "8080"
 placeholder_text = "Port..."
 
 [node name="Username" type="LineEdit" parent="MultiplayerManager/Network UI/VBoxContainer"]
@@ -79,6 +89,7 @@ shape = SubResource("WorldBoundaryShape3D_n0k2w")
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="StaticBody3D"]
 transform = Transform3D(36, 0, 0, 0, 36, 0, 0, 0, 36, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_cfblb")
 mesh = SubResource("PlaneMesh_rlpo4")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="."]
@@ -90,6 +101,7 @@ shape = SubResource("BoxShape3D_jpft6")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.124678, 0)
+material_override = SubResource("StandardMaterial3D_5hi0w")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://Characters/Guards/GuardTemplate/guard.tscn")

@@ -11,24 +11,14 @@ var localUserName : String
 var playerScene : PackedScene = preload("res://Characters/Guards/GuardTemplate/guard.tscn")
 @onready var spawnedNodes = $SpawnedNodes
 
-func _ready():
-	if "--server"in OS.get_cmdline_args():
-		var peer : ENetMultiplayerPeer = ENetMultiplayerPeer.new()
-		peer.create_server(int(port.text), maxClients)
-		multiplayer.multiplayer_peer = peer
-		
-		multiplayer.peer_connected.connect(_on_player_connected)
-		multiplayer.peer_disconnected.connect(_on_player_disconnected)
-		
-		_on_player_connected(multiplayer.get_unique_id())
-
-func _on_username_text_changed(new_text: String) -> void:
+func _on_username_text_changed(new_text: String):
 	localUserName = new_text
 
 func startHost():
 	var peer : ENetMultiplayerPeer = ENetMultiplayerPeer.new()
 	peer.create_server(int(port.text), maxClients)
 	multiplayer.multiplayer_peer = peer
+	set_multiplayer_authority(true)
 	
 	multiplayer.peer_connected.connect(_on_player_connected)
 	multiplayer.peer_disconnected.connect(_on_player_disconnected)
@@ -51,6 +41,8 @@ func _on_player_connected(id : int):
 	print("Player %s joined the game" % id)
 	
 	var player : Node = playerScene.instantiate()
+	player.get_multiplayer_authority()
+	player.name = str(multiplayer.get_unique_id())
 	spawnedNodes.add_child(player, true)
 
 func _on_player_disconnected(id : int):

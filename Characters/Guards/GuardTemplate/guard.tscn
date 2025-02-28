@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmdrq7ywr4ys6"]
+[gd_scene load_steps=5 format=3 uid="uid://dmdrq7ywr4ys6"]
 
-[ext_resource type="Script" path="res://Characters/Guards/GuardTemplate/guardCamera.gd" id="1_11c5n"]
 [ext_resource type="Script" path="res://Characters/Guards/GuardTemplate/guardMovement.gd" id="1_n1t57"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_g8tct"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6pgui"]
 
@@ -27,8 +29,8 @@ size = Vector3(0.7, 0.3, 0.5)
 
 [node name="pivotY" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-script = ExtResource("1_11c5n")
 
 [node name="pivotX" type="Node3D" parent="pivotY"]
 
 [node name="Camera3D" type="Camera3D" parent="pivotY/pivotX"]
+current = true
