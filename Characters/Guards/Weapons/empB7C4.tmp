@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://687fkqtwh5dc"]
+
+[ext_resource type="Script" path="res://Characters/Guards/Weapons/empShot.gd" id="1_3i4iq"]
+[ext_resource type="Texture2D" uid="uid://bfqpcwpbt47k1" path="res://image0.jpeg" id="1_cpghe"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_psys7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t7ax5"]
+albedo_texture = ExtResource("1_cpghe")
+
+[node name="EMPBurst" type="RigidBody3D"]
+script = ExtResource("1_3i4iq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+shape = SubResource("SphereShape3D_psys7")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_t7ax5")
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]

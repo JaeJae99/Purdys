@@ -11,8 +11,16 @@ properties/0/replication_mode = 1
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_pdvdp"]
 
-[node name="guard" type="CharacterBody3D"]
+[node name="guard" type="CharacterBody3D" node_paths=PackedStringArray("EMPSpawnPoint", "pivotY", "pivotX", "camera") groups=["Guards"]]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
 script = ExtResource("1_n1t57")
+EMPSpawnPoint = NodePath("pivotY/pivotX/empBurstSpawn")
+empSpeed = 15
+pivotY = NodePath("pivotY")
+pivotX = NodePath("pivotY/pivotX")
+camera = NodePath("pivotY/pivotX/Camera3D")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_g8tct")
@@ -31,6 +39,9 @@ size = Vector3(0.7, 0.3, 0.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="pivotX" type="Node3D" parent="pivotY"]
+
+[node name="empBurstSpawn" type="Node3D" parent="pivotY/pivotX"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.460776, -0.30307, -0.816573)
 
 [node name="Camera3D" type="Camera3D" parent="pivotY/pivotX"]
 current = true
