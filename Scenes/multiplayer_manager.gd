@@ -1,5 +1,6 @@
 extends Node
 
+@export_category("Multiplayer UI")
 @export var maxClients : int = 4
 @export var address : LineEdit
 @export var port : LineEdit
@@ -8,8 +9,12 @@ extends Node
 
 var localUserName : String
 
-var playerScene : PackedScene = preload("res://Characters/Guards/GuardTemplate/guard.tscn")
-@onready var spawnedNodes = $SpawnedNodes
+@export_category("Player Spawn Location")
+@export var spawnedNodes : Node3D
+
+@export_category("Player Scenes")
+@export var playerScene : PackedScene
+
 
 func _on_username_text_changed(new_text: String):
 	localUserName = new_text
@@ -25,7 +30,6 @@ func startHost():
 	
 	_on_player_connected(multiplayer.get_unique_id())
 	
-	camera.enabled = false
 	$"Network UI".visible = false
 
 func startClient():
@@ -40,9 +44,9 @@ func startClient():
 func _on_player_connected(id : int):
 	print("Player %s joined the game" % id)
 	
-	var player : Node = playerScene.instantiate()
-	player.get_multiplayer_authority()
-	player.name = str(multiplayer.get_unique_id())
+	var player : CharacterBody3D = playerScene.instantiate()
+	player.name = str(id)
+	player.position = spawnedNodes.global_position
 	spawnedNodes.add_child(player, true)
 
 func _on_player_disconnected(id : int):

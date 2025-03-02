@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://b0aw6o8vmh2la"]
+[gd_scene load_steps=11 format=3 uid="uid://b0aw6o8vmh2la"]
 
 [ext_resource type="Script" path="res://Scenes/Game.gd" id="1_hpi6x"]
 [ext_resource type="Script" path="res://Scenes/multiplayer_manager.gd" id="2_6q3l4"]
+[ext_resource type="PackedScene" uid="uid://dmdrq7ywr4ys6" path="res://Characters/Guards/GuardTemplate/guard.tscn" id="3_qr24j"]
 [ext_resource type="Texture2D" uid="uid://bfqpcwpbt47k1" path="res://image0.jpeg" id="3_tbild"]
 [ext_resource type="Texture2D" uid="uid://b2xmym6vlso25" path="res://icon.svg" id="4_f3n8g"]
 
@@ -20,12 +21,14 @@ albedo_texture = ExtResource("4_f3n8g")
 [node name="Game" type="Node3D"]
 script = ExtResource("1_hpi6x")
 
-[node name="MultiplayerManager" type="Node" parent="." node_paths=PackedStringArray("address", "port", "userName", "camera")]
+[node name="MultiplayerManager" type="Node" parent="." node_paths=PackedStringArray("address", "port", "userName", "camera", "spawnedNodes")]
 script = ExtResource("2_6q3l4")
 address = NodePath("Network UI/VBoxContainer/IPAddress")
 port = NodePath("Network UI/VBoxContainer/Port Number")
 userName = NodePath("Network UI/VBoxContainer/Username")
 camera = NodePath("Camera2D")
+spawnedNodes = NodePath("SpawnedNodes")
+playerScene = ExtResource("3_qr24j")
 
 [node name="Network UI" type="Panel" parent="MultiplayerManager"]
 anchors_preset = -1

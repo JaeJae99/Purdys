@@ -22,6 +22,7 @@ func _unhandled_input(event: InputEvent):
 		if event is InputEventMouseMotion:
 			pivotY.rotate_y(-event.relative.x * 0.01)
 			pivotX.rotate_x(-event.relative.y * 0.01)
+			$CSGMesh3D.rotation.y = pivotY.rotation.y
 			pivotX.rotation.x = clamp(pivotX.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 #Player Movement Function

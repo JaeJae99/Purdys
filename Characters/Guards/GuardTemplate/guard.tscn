@@ -33,4 +33,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 [node name="pivotX" type="Node3D" parent="pivotY"]
 
 [node name="Camera3D" type="Camera3D" parent="pivotY/pivotX"]
-current = true
